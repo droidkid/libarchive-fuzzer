@@ -1,0 +1,210 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - coverage.info - libarchive/test/test_archive_write_set_options.c</title>
+  <link rel="stylesheet" type="text/css" href="../../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title">LCOV - code coverage report</td></tr>
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../../index.html">top level</a> - <a href="index.html">libarchive/test</a> - test_archive_write_set_options.c<span style="font-size: 80%;"> (source / <a href="test_archive_write_set_options.c.func-sort-c.html">functions</a>)</span></td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Test:</td>
+            <td class="headerValue">coverage.info</td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">0</td>
+            <td class="headerCovTableEntry">51</td>
+            <td class="headerCovTableEntryLo">0.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2022-10-05 09:42:40</td>
+            <td></td>
+            <td class="headerItem">Functions:</td>
+            <td class="headerCovTableEntry">0</td>
+            <td class="headerCovTableEntry">2</td>
+            <td class="headerCovTableEntryLo">0.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Legend:</td>
+            <td class="headerValueLeg">            Lines:
+            <span class="coverLegendCov">hit</span>
+            <span class="coverLegendNoCov">not hit</span>
+</td>
+            <td></td>
+          </tr>
+          <tr><td><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<a name="1"><span class="lineNum">       1 </span>            : /*-</a>
+<a name="2"><span class="lineNum">       2 </span>            :  * Copyright (c) 2011 Tim Kientzle</a>
+<a name="3"><span class="lineNum">       3 </span>            :  * All rights reserved.</a>
+<a name="4"><span class="lineNum">       4 </span>            :  *</a>
+<a name="5"><span class="lineNum">       5 </span>            :  * Redistribution and use in source and binary forms, with or without</a>
+<a name="6"><span class="lineNum">       6 </span>            :  * modification, are permitted provided that the following conditions</a>
+<a name="7"><span class="lineNum">       7 </span>            :  * are met:</a>
+<a name="8"><span class="lineNum">       8 </span>            :  * 1. Redistributions of source code must retain the above copyright</a>
+<a name="9"><span class="lineNum">       9 </span>            :  *    notice, this list of conditions and the following disclaimer.</a>
+<a name="10"><span class="lineNum">      10 </span>            :  * 2. Redistributions in binary form must reproduce the above copyright</a>
+<a name="11"><span class="lineNum">      11 </span>            :  *    notice, this list of conditions and the following disclaimer in the</a>
+<a name="12"><span class="lineNum">      12 </span>            :  *    documentation and/or other materials provided with the distribution.</a>
+<a name="13"><span class="lineNum">      13 </span>            :  *</a>
+<a name="14"><span class="lineNum">      14 </span>            :  * THIS SOFTWARE IS PROVIDED BY THE AUTHOR(S) ``AS IS'' AND ANY EXPRESS OR</a>
+<a name="15"><span class="lineNum">      15 </span>            :  * IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES</a>
+<a name="16"><span class="lineNum">      16 </span>            :  * OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.</a>
+<a name="17"><span class="lineNum">      17 </span>            :  * IN NO EVENT SHALL THE AUTHOR(S) BE LIABLE FOR ANY DIRECT, INDIRECT,</a>
+<a name="18"><span class="lineNum">      18 </span>            :  * INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT</a>
+<a name="19"><span class="lineNum">      19 </span>            :  * NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,</a>
+<a name="20"><span class="lineNum">      20 </span>            :  * DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY</a>
+<a name="21"><span class="lineNum">      21 </span>            :  * THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT</a>
+<a name="22"><span class="lineNum">      22 </span>            :  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF</a>
+<a name="23"><span class="lineNum">      23 </span>            :  * THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</a>
+<a name="24"><span class="lineNum">      24 </span>            :  */</a>
+<a name="25"><span class="lineNum">      25 </span>            : </a>
+<a name="26"><span class="lineNum">      26 </span>            : #include &quot;test.h&quot;</a>
+<a name="27"><span class="lineNum">      27 </span>            : __FBSDID(&quot;$FreeBSD$&quot;);</a>
+<a name="28"><span class="lineNum">      28 </span>            : </a>
+<a name="29"><span class="lineNum">      29 </span>            : #define should(__a, __code, __opts) \</a>
+<a name="30"><span class="lineNum">      30 </span>            : assertEqualInt(__code, archive_write_set_options(__a, __opts))</a>
+<a name="31"><span class="lineNum">      31 </span>            : </a>
+<a name="32"><span class="lineNum">      32 </span>            : static void</a>
+<a name="33"><span class="lineNum">      33 </span><span class="lineNoCov">          0 : test(int pristine)</span></a>
+<a name="34"><span class="lineNum">      34 </span>            : {</a>
+<a name="35"><span class="lineNum">      35 </span><span class="lineNoCov">          0 :         struct archive* a = archive_write_new();</span></a>
+<a name="36"><span class="lineNum">      36 </span><span class="lineNoCov">          0 :         int halfempty_options_rv = pristine ? ARCHIVE_FAILED : ARCHIVE_OK;</span></a>
+<a name="37"><span class="lineNum">      37 </span><span class="lineNoCov">          0 :         int known_option_rv = pristine ? ARCHIVE_FAILED : ARCHIVE_OK;</span></a>
+<a name="38"><span class="lineNum">      38 </span>            : </a>
+<a name="39"><span class="lineNum">      39 </span><span class="lineNoCov">          0 :         if (!pristine) {</span></a>
+<a name="40"><span class="lineNum">      40 </span><span class="lineNoCov">          0 :                 archive_write_add_filter_gzip(a);</span></a>
+<a name="41"><span class="lineNum">      41 </span><span class="lineNoCov">          0 :                 archive_write_set_format_iso9660(a);</span></a>
+<a name="42"><span class="lineNum">      42 </span>            :         }</a>
+<a name="43"><span class="lineNum">      43 </span>            : </a>
+<a name="44"><span class="lineNum">      44 </span>            :         /* NULL and &quot;&quot; denote `no option', so they're ok no matter</a>
+<a name="45"><span class="lineNum">      45 </span>            :          * what, if any, formats are registered */</a>
+<a name="46"><span class="lineNum">      46 </span><span class="lineNoCov">          0 :         should(a, ARCHIVE_OK, NULL);</span></a>
+<a name="47"><span class="lineNum">      47 </span><span class="lineNoCov">          0 :         should(a, ARCHIVE_OK, &quot;&quot;);</span></a>
+<a name="48"><span class="lineNum">      48 </span>            : </a>
+<a name="49"><span class="lineNum">      49 </span>            :         /* unknown modules and options */</a>
+<a name="50"><span class="lineNum">      50 </span><span class="lineNoCov">          0 :         should(a, ARCHIVE_FAILED, &quot;fubar:snafu&quot;);</span></a>
+<a name="51"><span class="lineNum">      51 </span><span class="lineNoCov">          0 :         assertEqualString(&quot;Unknown module name: `fubar'&quot;,</span></a>
+<a name="52"><span class="lineNum">      52 </span>            :             archive_error_string(a));</a>
+<a name="53"><span class="lineNum">      53 </span><span class="lineNoCov">          0 :         should(a, ARCHIVE_FAILED, &quot;fubar:snafu=betcha&quot;);</span></a>
+<a name="54"><span class="lineNum">      54 </span><span class="lineNoCov">          0 :         assertEqualString(&quot;Unknown module name: `fubar'&quot;,</span></a>
+<a name="55"><span class="lineNum">      55 </span>            :             archive_error_string(a));</a>
+<a name="56"><span class="lineNum">      56 </span>            : </a>
+<a name="57"><span class="lineNum">      57 </span>            :         /* unknown modules and options */</a>
+<a name="58"><span class="lineNum">      58 </span><span class="lineNoCov">          0 :         should(a, ARCHIVE_FAILED, &quot;snafu&quot;);</span></a>
+<a name="59"><span class="lineNum">      59 </span><span class="lineNoCov">          0 :         assertEqualString(&quot;Undefined option: `snafu'&quot;,</span></a>
+<a name="60"><span class="lineNum">      60 </span>            :             archive_error_string(a));</a>
+<a name="61"><span class="lineNum">      61 </span><span class="lineNoCov">          0 :         should(a, ARCHIVE_FAILED, &quot;snafu=betcha&quot;);</span></a>
+<a name="62"><span class="lineNum">      62 </span><span class="lineNoCov">          0 :         assertEqualString(&quot;Undefined option: `snafu'&quot;,</span></a>
+<a name="63"><span class="lineNum">      63 </span>            :             archive_error_string(a));</a>
+<a name="64"><span class="lineNum">      64 </span>            : </a>
+<a name="65"><span class="lineNum">      65 </span>            :         /* ARCHIVE_OK with iso9660 loaded, ARCHIVE_FAILED otherwise */</a>
+<a name="66"><span class="lineNum">      66 </span><span class="lineNoCov">          0 :         should(a, known_option_rv, &quot;iso9660:joliet&quot;);</span></a>
+<a name="67"><span class="lineNum">      67 </span><span class="lineNoCov">          0 :         if (pristine) {</span></a>
+<a name="68"><span class="lineNum">      68 </span><span class="lineNoCov">          0 :                 assertEqualString(&quot;Unknown module name: `iso9660'&quot;,</span></a>
+<a name="69"><span class="lineNum">      69 </span>            :                     archive_error_string(a));</a>
+<a name="70"><span class="lineNum">      70 </span>            :         }</a>
+<a name="71"><span class="lineNum">      71 </span><span class="lineNoCov">          0 :         should(a, known_option_rv, &quot;iso9660:joliet&quot;);</span></a>
+<a name="72"><span class="lineNum">      72 </span><span class="lineNoCov">          0 :         if (pristine) {</span></a>
+<a name="73"><span class="lineNum">      73 </span><span class="lineNoCov">          0 :                 assertEqualString(&quot;Unknown module name: `iso9660'&quot;,</span></a>
+<a name="74"><span class="lineNum">      74 </span>            :                     archive_error_string(a));</a>
+<a name="75"><span class="lineNum">      75 </span>            :         }</a>
+<a name="76"><span class="lineNum">      76 </span><span class="lineNoCov">          0 :         should(a, known_option_rv, &quot;joliet&quot;);</span></a>
+<a name="77"><span class="lineNum">      77 </span><span class="lineNoCov">          0 :         if (pristine) {</span></a>
+<a name="78"><span class="lineNum">      78 </span><span class="lineNoCov">          0 :                 assertEqualString(&quot;Undefined option: `joliet'&quot;,</span></a>
+<a name="79"><span class="lineNum">      79 </span>            :                     archive_error_string(a));</a>
+<a name="80"><span class="lineNum">      80 </span>            :         }</a>
+<a name="81"><span class="lineNum">      81 </span><span class="lineNoCov">          0 :         should(a, known_option_rv, &quot;!joliet&quot;);</span></a>
+<a name="82"><span class="lineNum">      82 </span><span class="lineNoCov">          0 :         if (pristine) {</span></a>
+<a name="83"><span class="lineNum">      83 </span><span class="lineNoCov">          0 :                 assertEqualString(&quot;Undefined option: `joliet'&quot;,</span></a>
+<a name="84"><span class="lineNum">      84 </span>            :                     archive_error_string(a));</a>
+<a name="85"><span class="lineNum">      85 </span>            :         }</a>
+<a name="86"><span class="lineNum">      86 </span>            : </a>
+<a name="87"><span class="lineNum">      87 </span><span class="lineNoCov">          0 :         should(a, ARCHIVE_OK, &quot;,&quot;);</span></a>
+<a name="88"><span class="lineNum">      88 </span><span class="lineNoCov">          0 :         should(a, ARCHIVE_OK, &quot;,,&quot;);</span></a>
+<a name="89"><span class="lineNum">      89 </span>            : </a>
+<a name="90"><span class="lineNum">      90 </span><span class="lineNoCov">          0 :         should(a, halfempty_options_rv, &quot;,joliet&quot;);</span></a>
+<a name="91"><span class="lineNum">      91 </span><span class="lineNoCov">          0 :         if (pristine) {</span></a>
+<a name="92"><span class="lineNum">      92 </span><span class="lineNoCov">          0 :                 assertEqualString(&quot;Undefined option: `joliet'&quot;,</span></a>
+<a name="93"><span class="lineNum">      93 </span>            :                     archive_error_string(a));</a>
+<a name="94"><span class="lineNum">      94 </span>            :         }</a>
+<a name="95"><span class="lineNum">      95 </span><span class="lineNoCov">          0 :         should(a, halfempty_options_rv, &quot;joliet,&quot;);</span></a>
+<a name="96"><span class="lineNum">      96 </span><span class="lineNoCov">          0 :         if (pristine) {</span></a>
+<a name="97"><span class="lineNum">      97 </span><span class="lineNoCov">          0 :                 assertEqualString(&quot;Undefined option: `joliet'&quot;,</span></a>
+<a name="98"><span class="lineNum">      98 </span>            :                     archive_error_string(a));</a>
+<a name="99"><span class="lineNum">      99 </span>            :         }</a>
+<a name="100"><span class="lineNum">     100 </span>            : </a>
+<a name="101"><span class="lineNum">     101 </span><span class="lineNoCov">          0 :         should(a, ARCHIVE_FAILED, &quot;joliet,snafu&quot;);</span></a>
+<a name="102"><span class="lineNum">     102 </span><span class="lineNoCov">          0 :         if (pristine) {</span></a>
+<a name="103"><span class="lineNum">     103 </span><span class="lineNoCov">          0 :                 assertEqualString(&quot;Undefined option: `joliet'&quot;,</span></a>
+<a name="104"><span class="lineNum">     104 </span>            :                     archive_error_string(a));</a>
+<a name="105"><span class="lineNum">     105 </span>            :         } else {</a>
+<a name="106"><span class="lineNum">     106 </span><span class="lineNoCov">          0 :                 assertEqualString(&quot;Undefined option: `snafu'&quot;,</span></a>
+<a name="107"><span class="lineNum">     107 </span>            :                     archive_error_string(a));</a>
+<a name="108"><span class="lineNum">     108 </span>            :         }</a>
+<a name="109"><span class="lineNum">     109 </span>            : </a>
+<a name="110"><span class="lineNum">     110 </span><span class="lineNoCov">          0 :         should(a, ARCHIVE_FAILED, &quot;iso9660:snafu&quot;);</span></a>
+<a name="111"><span class="lineNum">     111 </span><span class="lineNoCov">          0 :         if (pristine) {</span></a>
+<a name="112"><span class="lineNum">     112 </span><span class="lineNoCov">          0 :                 assertEqualString(&quot;Unknown module name: `iso9660'&quot;,</span></a>
+<a name="113"><span class="lineNum">     113 </span>            :                     archive_error_string(a));</a>
+<a name="114"><span class="lineNum">     114 </span>            :         } else {</a>
+<a name="115"><span class="lineNum">     115 </span><span class="lineNoCov">          0 :                 assertEqualString(&quot;Undefined option: `iso9660:snafu'&quot;,</span></a>
+<a name="116"><span class="lineNum">     116 </span>            :                     archive_error_string(a));</a>
+<a name="117"><span class="lineNum">     117 </span>            :         }</a>
+<a name="118"><span class="lineNum">     118 </span>            : </a>
+<a name="119"><span class="lineNum">     119 </span><span class="lineNoCov">          0 :         archive_write_free(a);</span></a>
+<a name="120"><span class="lineNum">     120 </span><span class="lineNoCov">          0 : }</span></a>
+<a name="121"><span class="lineNum">     121 </span>            : </a>
+<a name="122"><span class="lineNum">     122 </span><span class="lineNoCov">          0 : DEFINE_TEST(test_archive_write_set_options)</span></a>
+<a name="123"><span class="lineNum">     123 </span>            : {</a>
+<a name="124"><span class="lineNum">     124 </span><span class="lineNoCov">          0 :         test(1);</span></a>
+<a name="125"><span class="lineNum">     125 </span><span class="lineNoCov">          0 :         test(0);</span></a>
+<a name="126"><span class="lineNum">     126 </span><span class="lineNoCov">          0 : }</span></a>
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="https://github.com/linux-test-project/lcov" target="_parent">LCOV version 1.16</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>
